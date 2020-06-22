@@ -82,7 +82,7 @@ const menu = [
 ];
 
 const sectionCenter = document.querySelector('.section-center');
-const filterButtons = document.querySelectorAll('.filter-btn');
+const buttonContainer = document.querySelector('.btn-container');
 
 const displayMenuItems = (menuItems) => {
   let displayMenu = menuItems
@@ -104,9 +104,7 @@ const displayMenuItems = (menuItems) => {
   sectionCenter.innerHTML = displayMenu;
 };
 
-window.addEventListener('DOMContentLoaded', () => {
-  displayMenuItems(menu);
-
+const displayMenuButtons = () => {
   const categories = menu.reduce(
     (values, item) => {
       if (!values.includes(item.category)) {
@@ -116,22 +114,37 @@ window.addEventListener('DOMContentLoaded', () => {
     },
     ['all']
   );
-  console.log(categories);
-});
+  const categoryButtons = categories
+    .map((category) => {
+      return `<button class="filter-btn" type="button" data-cat=${category}>
+      ${category}
+    </button>
+    `;
+    })
+    .join('');
+  buttonContainer.innerHTML = categoryButtons;
 
-filterButtons.forEach((btn) =>
-  btn.addEventListener('click', (e) => {
-    const category = e.currentTarget.dataset.cat;
-    console.log(category);
-    const menuCategory = menu.filter((item) => {
-      if (item.category === category) {
-        return item;
+  // Need to select these buttons because they were dynamically added to the DOM.
+  const filterButtons = buttonContainer.querySelectorAll('.filter-btn');
+
+  filterButtons.forEach((btn) =>
+    btn.addEventListener('click', (e) => {
+      const category = e.currentTarget.dataset.cat;
+      console.log(category);
+      const menuCategory = menu.filter((item) => {
+        if (item.category === category) {
+          return item;
+        }
+      });
+      if (category === 'all') {
+        displayMenuItems(menu);
+      } else {
+        displayMenuItems(menuCategory);
       }
-    });
-    if (category === 'all') {
-      displayMenuItems(menu);
-    } else {
-      displayMenuItems(menuCategory);
-    }
-  })
-);
+    })
+  );
+};
+window.addEventListener('DOMContentLoaded', () => {
+  displayMenuButtons();
+  displayMenuItems(menu);
+});
