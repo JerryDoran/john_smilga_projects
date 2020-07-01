@@ -103,7 +103,7 @@ const addItem = (e) => {
   e.preventDefault();
   const value = grocery.value;
   const id = new Date().getTime().toString();
-  createListItem(id, value);
+
   if (value && !editFlag) {
     // display alert
     displayAlert('item added to the list', 'success');
@@ -113,7 +113,7 @@ const addItem = (e) => {
 
     // add to local storage
     addToLocalStorage(id, value);
-
+    createListItem(id, value);
     setBackToDefault();
   } else if (value && editFlag) {
     editElement.innerHTML = value;
