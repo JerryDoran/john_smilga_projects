@@ -367,10 +367,11 @@ Stripe Styles
   top: 4rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  /* z-index: 3; */
   display: none;
   padding: 2rem;
   border-radius: var(--radius);
+  transition: all 1s ease;
 }
 .submenu::before {
   content: '';
@@ -388,23 +389,24 @@ Stripe Styles
 
 .submenu.show {
   display: block;
+  z-index: 3;
 }
-
 .submenu-center {
   display: grid;
-  gap: 0.25rem 2rem;
+  gap: 0.25rem 1rem;
 }
 .col-2 {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 150px);
 }
 .col-3 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 150px);
 }
 .col-4 {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 150px);
 }
 .submenu h4 {
   margin-bottom: 1.5rem;
+  opacity: 1;
 }
 .submenu-center a {
   width: 10rem;
