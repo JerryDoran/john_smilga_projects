@@ -98,6 +98,10 @@ p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
+
+.toggle-btn {
+  margin-right: 1rem;
+}
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
@@ -331,8 +335,8 @@ Stripe Styles
   border-color: transparent;
   color: var(--clr-grey-5);
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: .5rem;
+  right: 1.5rem;
   cursor: pointer;
 }
 .sidebar article {
@@ -368,10 +372,11 @@ Stripe Styles
   left: 50%;
   transform: translateX(-50%);
   /* z-index: 3; */
-  display: none;
+  /* display: none; */
   padding: 2rem;
   border-radius: var(--radius);
-  transition: all 1s ease;
+  opacity: 0;
+  transition: var(--transition);
 }
 .submenu::before {
   content: '';
@@ -389,7 +394,8 @@ Stripe Styles
 
 .submenu.show {
   display: block;
-  z-index: 3;
+  z-index: 3; 
+  opacity: 1; 
 }
 .submenu-center {
   display: grid;
